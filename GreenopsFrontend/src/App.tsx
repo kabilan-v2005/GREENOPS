@@ -13,6 +13,8 @@ import Complaints from './pages/Complaints';
 import Feedback from './pages/Feedback';
 import Reports from './pages/Reports';
 import Resale from './pages/Resale';
+import MyOrders from './pages/MyOrders';
+import MyListings from "./pages/MyListings";
 
 const App: React.FC = () => {
   return (
@@ -30,6 +32,8 @@ const App: React.FC = () => {
           <Route path="feedback" element={<Feedback />} />
           <Route path="reports" element={<Reports />} />
           <Route path="resale" element={<Resale />} />
+          <Route path="my-orders" element={<MyOrders />} />
+          <Route path="my-listings" element={<MyListings />} />
         </Route>
 
         {/* Fallback route */}

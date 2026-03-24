@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FileText, AlertTriangle, ShoppingBag, TrendingUp, Users } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
+import { getReports } from '../services/reportService';
+import { getComplaints } from '../services/complaintService';
+import { getResaleItems } from '../services/resaleService';
+import { Report, Complaint, Item } from '../types';
 
 const Dashboard: React.FC = () => {
-  // Mock data for the dashboard
+  const [reports, setReports] = useState<Report[]>([]);
+  const [complaints, setComplaints] = useState<Complaint[]>([]);
+  const [resaleItems, setResaleItems] = useState<Item[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [reportsData, complaintsData, resaleData] = await Promise.all([
+          getReports(),
+          getComplaints(),
+          getResaleItems()
+        ]);
+        setReports(reportsData || []);
+        setComplaints(complaintsData || []);
+        setResaleItems(resaleData || []);
+      } catch (error) {
+        console.error("Failed to fetch dashboard data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   const stats = [
     {
       name: 'Total Reports',
-      value: '128',
+      value: reports.length.toString(),
       icon: FileText,
       trend: '+12%',
       trendUp: true,
@@ -15,7 +44,7 @@ const Dashboard: React.FC = () => {
     },
     {
       name: 'Active Complaints',
-      value: '24',
+      value: complaints.filter(c => c.status !== 'Resolved').length.toString(),
       icon: AlertTriangle,
       trend: '-5%',
       trendUp: false,
@@ -23,7 +52,7 @@ const Dashboard: React.FC = () => {
     },
     {
       name: 'Resale Items',
-      value: '56',
+      value: resaleItems.length.toString(),
       icon: ShoppingBag,
       trend: '+18%',
       trendUp: true,
@@ -31,7 +60,7 @@ const Dashboard: React.FC = () => {
     },
     {
       name: 'Community Impact',
-      value: '840kg',
+      value: `${(reports.length * 2.5 + resaleItems.length * 5).toFixed(1)}kg`,
       icon: TrendingUp,
       trend: '+24%',
       trendUp: true,
@@ -40,11 +69,37 @@ const Dashboard: React.FC = () => {
   ];
 
   const recentActivity = [
-    { id: 1, action: 'Waste Report Submitted', location: 'Downtown Park', time: '2 hours ago', type: 'report' },
-    { id: 2, action: 'Resale Item Sold', location: 'Vintage Bicycle', time: '5 hours ago', type: 'resale' },
-    { id: 3, action: 'Complaint Resolved', location: 'Street Light #42', time: '1 day ago', type: 'complaint' },
-    { id: 4, action: 'New User Joined', location: 'Community Group', time: '1 day ago', type: 'user' },
-  ];
+    ...reports.map(r => ({
+      id: `rep-${r.id}`,
+      action: 'Waste Report Submitted',
+      location: r.location || 'Unknown Location',
+      time: new Date(r.createdAt || Date.now()).toLocaleDateString(),
+      date: new Date(r.createdAt || Date.now()),
+      type: 'report'
+    })),
+    ...complaints.map(c => ({
+      id: `comp-${c.complaintId}`,
+      action: 'Complaint Filed',
+      location: c.complaintDescription ? (c.complaintDescription.substring(0, 20) + '...') : 'System Issue',
+      time: new Date(c.complaintDate || Date.now()).toLocaleDateString(),
+      date: new Date(c.complaintDate || Date.now()),
+      type: 'complaint'
+    })),
+    ...resaleItems.map(i => ({
+      id: `res-${i.id}`,
+      action: i.isSold ? 'Resale Item Sold' : 'Resale Item Listed',
+      location: i.title || 'Item',
+      time: new Date(i.createdAt || Date.now()).toLocaleDateString(),
+      date: new Date(i.createdAt || Date.now()),
+      type: 'resale'
+    }))
+  ]
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
+    .slice(0, 5); // top 5 recent activities
+
+  if (isLoading) {
+    return <div className="flex justify-center items-center h-full py-10">Loading dashboard...</div>;
+  }
 
   return (
     <div className="space-y-6">
@@ -118,27 +173,27 @@ const Dashboard: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <button className="w-full flex items-center justify-between p-4 bg-primary-50 rounded-xl hover:bg-primary-100 transition-colors border border-primary-100">
+              <Link to="/reports" className="w-full flex items-center justify-between p-4 bg-primary-50 rounded-xl hover:bg-primary-100 transition-colors border border-primary-100">
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-primary-600" />
                   <span className="font-medium text-primary-900">Report Waste</span>
                 </div>
                 <span className="text-primary-600">→</span>
-              </button>
-              <button className="w-full flex items-center justify-between p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors border border-green-100">
+              </Link>
+              <Link to="/resale" className="w-full flex items-center justify-between p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors border border-green-100">
                 <div className="flex items-center gap-3">
                   <ShoppingBag className="w-5 h-5 text-green-600" />
                   <span className="font-medium text-green-900">Sell an Item</span>
                 </div>
                 <span className="text-green-600">→</span>
-              </button>
-              <button className="w-full flex items-center justify-between p-4 bg-amber-50 rounded-xl hover:bg-amber-100 transition-colors border border-amber-100">
+              </Link>
+              <Link to="/complaints" className="w-full flex items-center justify-between p-4 bg-amber-50 rounded-xl hover:bg-amber-100 transition-colors border border-amber-100">
                 <div className="flex items-center gap-3">
                   <AlertTriangle className="w-5 h-5 text-amber-600" />
                   <span className="font-medium text-amber-900">File Complaint</span>
                 </div>
                 <span className="text-amber-600">→</span>
-              </button>
+              </Link>
             </div>
           </CardContent>
         </Card>

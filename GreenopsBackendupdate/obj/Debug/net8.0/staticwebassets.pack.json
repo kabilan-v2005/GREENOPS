@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099295080022452.jpg",
+      "PackagePath": "staticwebassets\\uploads\\nil_639099295080022452.jpg"
+    },
+    {
+      "Id": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296320374151.png",
+      "PackagePath": "staticwebassets\\uploads\\nil_639099296320374151.png"
+    },
+    {
+      "Id": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296411828738.png",
+      "PackagePath": "staticwebassets\\uploads\\nil_639099296411828738.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Greenops.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Greenops.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Greenops.props",
+      "PackagePath": "build\\Greenops.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Greenops.props",
+      "PackagePath": "buildMultiTargeting\\Greenops.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Greenops.props",
+      "PackagePath": "buildTransitive\\Greenops.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,26 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MessageSquare, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import { addFeedback, getFeedbacks } from '../services/feedbackService';
 
 const Feedback: React.FC = () => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ rating, message });
-    setIsSubmitted(true);
-    // Simulate API call
-    setTimeout(() => {
-      setRating(0);
-      setMessage('');
-      setIsSubmitted(false);
-    }, 3000);
+  const [feedbacks, setFeedbacks] = useState<any[]>([]);
+  const [content, setContent] = useState('');
+  useEffect(() => {
+    fetchFeedbacks();
+  }, []);
+  const fetchFeedbacks = async () => {
+    try {
+      const data = await getFeedbacks();
+      setFeedbacks(data);
+    } catch (err) {
+      console.error(err);
+    }
   };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
+    try {
+      const data = {
+        userId: 2, // 🔥 later from login
+        feedbackContent: content
+      };
+
+      console.log("Sending:", data);
+
+      await addFeedback(data);
+
+      alert("Feedback submitted ✅");
+
+      setContent('');
+      fetchFeedbacks();
+    } catch (err) {
+      console.error(err);
+      alert("Failed ❌");
+    }
+  };
+  {
+    feedbacks.map((f) => (
+      <div key={f.feedbackId} className="border p-3 mb-2 rounded">
+        <p>{f.feedbackContent}</p>
+        <p className="text-sm text-gray-500">
+          {new Date(f.submittedDate).toLocaleDateString()}
+        </p>
+      </div>
+    ))
+  }
   return (
     <div className="space-y-6 max-w-3xl mx-auto">
       <div className="text-center mb-8">
@@ -61,12 +94,11 @@ const Feedback: React.FC = () => {
                       onMouseLeave={() => setHoverRating(0)}
                       onClick={() => setRating(star)}
                     >
-                      <Star 
-                        className={`w-10 h-10 transition-colors ${
-                          star <= (hoverRating || rating)
-                            ? 'text-yellow-400 fill-current' 
-                            : 'text-gray-300'
-                        }`} 
+                      <Star
+                        className={`w-10 h-10 transition-colors ${star <= (hoverRating || rating)
+                          ? 'text-yellow-400 fill-current'
+                          : 'text-gray-300'
+                          }`}
                       />
                     </button>
                   ))}
@@ -89,9 +121,9 @@ const Feedback: React.FC = () => {
               </div>
 
               <div className="pt-2">
-                <Button 
-                  type="submit" 
-                  className="w-full" 
+                <Button
+                  type="submit"
+                  className="w-full"
                   size="lg"
                   disabled={rating === 0}
                 >
@@ -102,7 +134,7 @@ const Feedback: React.FC = () => {
           )}
         </CardContent>
       </Card>
-      
+
       {/* Past Feedback section could go here if needed, but usually feedback forms are just submissions */}
     </div>
   );

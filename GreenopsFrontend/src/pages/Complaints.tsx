@@ -1,45 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AlertCircle, FileText, CheckCircle2, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import type { Complaint } from '../types';
+import { addComplaint, getComplaints } from '../services/complaintService';
 
 const Complaints: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
-  
+
   // Form state
   const [title, setTitle] = useState('');
+  // const [description, setDescription] = useState('');
+  const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [description, setDescription] = useState('');
 
-  // Mock data for complaints
-  const mockComplaints: Complaint[] = [
-    {
-      id: '1',
-      userId: 'user1',
-      title: 'Missed Garbage Collection',
-      description: 'Garbage was not collected on the scheduled day for our entire street in Sector 4.',
-      status: 'Pending',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: '2',
-      userId: 'user1',
-      title: 'Damaged Public Dustbin',
-      description: 'The green dustbin installed near the community center is broken and needs replacement.',
-      status: 'Resolved',
-      createdAt: new Date(Date.now() - 432000000).toISOString() // 5 days ago
-    }
-  ];
+  useEffect(() => {
+    fetchComplaints();
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ title, description });
-    setShowForm(false);
-    setTitle('');
-    setDescription('');
+  const fetchComplaints = async () => {
+    try {
+      const data = await getComplaints();
+      setComplaints(data);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const data = {
+        userId: 2, // 🔥 later from login
+        complaintDescription: description,
+        proofImage: "" // no image for now
+      };
+
+      console.log("Sending:", data);
+
+      await addComplaint(data);
+
+      alert("Complaint submitted ✅");
+
+      setDescription('');
+      fetchComplaints();
+    } catch (err) {
+      console.error(err);
+      alert("Failed ❌");
+    }
+  };
+  {
+    complaints.map((c) => (
+      <div key={c.complaintId} className="border p-3 mb-2 rounded">
+        <p>{c.complaintDescription}</p>
+        <p>Status: {c.status}</p>
+        <p>Date: {new Date(c.complaintDate).toLocaleDateString()}</p>
+      </div>
+    ))
+  }
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -62,7 +82,7 @@ const Complaints: React.FC = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input 
+              <Input
                 label="Complaint Title"
                 placeholder="E.g., Missed Scheduled Collection"
                 value={title}
@@ -95,23 +115,28 @@ const Complaints: React.FC = () => {
       {/* Complaints List */}
       <h3 className="text-lg font-medium text-gray-900 mt-8 mb-4">Your Past Complaints</h3>
       <div className="grid grid-cols-1 gap-4">
-        {mockComplaints.map((complaint) => (
-          <Card key={complaint.id} className="overflow-hidden">
-            <div className={`h-1.5 w-full ${complaint.status === 'Resolved' ? 'bg-green-500' : 'bg-amber-500'}`}></div>
+        {complaints.map((complaint) => (
+          <Card key={complaint.complaintId} className="overflow-hidden">
+            <div className={`h-1.5 w-full ${complaint.status === 'Resolved' ? 'bg-green-500' : 'bg-amber-500'
+              }`}></div>
+
             <CardContent className="p-5">
-              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-3">
-                <h4 className="font-bold text-gray-900 text-lg">{complaint.title}</h4>
-                <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium shrink-0
-                  ${complaint.status === 'Resolved' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
-                  {complaint.status === 'Resolved' ? <CheckCircle2 className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
+              <div className="flex justify-between mb-2">
+                <h4 className="font-bold text-gray-900">
+                  Complaint
+                </h4>
+
+                <span className="text-sm font-medium">
                   {complaint.status}
-                </div>
+                </span>
               </div>
-              <p className="text-gray-600 text-sm mb-4">
-                {complaint.description}
+
+              <p className="text-gray-600 text-sm mb-3">
+                {complaint.complaintDescription}
               </p>
-              <div className="text-xs text-gray-500 uppercase tracking-wide font-medium">
-                Filed on {new Date(complaint.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+
+              <div className="text-xs text-gray-500">
+                Filed on {new Date(complaint.complaintDate).toLocaleDateString()}
               </div>
             </CardContent>
           </Card>

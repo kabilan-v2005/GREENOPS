@@ -1,53 +1,69 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Plus, MapPin, Camera, Search, Filter } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import type { Report } from '../types';
+import { addReport, getReports } from '../services/reportService';
+
 
 const Reports: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
-  
+  const [reports, setReports] = useState<any[]>([]);
+  const [image, setImage] = useState<File | null>(null);
   // Form state
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
 
-  // Mock data for reports
-  const mockReports: Report[] = [
-    {
-      id: '1',
-      userId: 'user1',
-      location: 'Central Park West Entrance',
-      description: 'Large pile of non-recyclable construction waste dumped near the bins.',
-      imageUrl: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=800&q=80',
-      status: 'Pending',
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: '2',
-      userId: 'user2',
-      location: 'Main St & 5th Ave',
-      description: 'Public recycling bin is overflowing and scattered across the sidewalk.',
-      status: 'In Progress',
-      createdAt: new Date(Date.now() - 86400000).toISOString()
-    },
-    {
-      id: '3',
-      userId: 'user1',
-      location: 'Riverside Drive',
-      description: 'Abandoned electronic waste (old TV and microwave).',
-      status: 'Resolved',
-      createdAt: new Date(Date.now() - 172800000).toISOString()
-    }
-  ];
+  useEffect(() => {
+    fetchReports();
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const fetchReports = async () => {
+    try {
+      const data = await getReports();
+
+      const formatted = data.map((r: any) => ({
+        id: r.reportId,
+        location: r.place,
+        description: r.description,
+        imageUrl: "",
+        status: "Pending",
+        createdAt: r.reportDate
+      }));
+
+      setReports(formatted);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
-    console.log({ location, description });
-    setShowForm(false);
-    setLocation('');
-    setDescription('');
+
+    try {
+      const data = {
+        userId: 2, // 🔥 later from login
+        district: location,
+        place: location,
+        description: description,
+        wasteImage: "" // no image now
+      };
+
+      console.log("Sending:", data);
+
+      await addReport(data);
+
+      alert("Report submitted ✅");
+
+      setShowForm(false);
+      setLocation('');
+      setDescription('');
+
+      fetchReports(); // 🔥 refresh list
+    } catch (err) {
+      console.error(err);
+      alert("Failed ❌");
+    }
   };
 
   const getStatusColor = (status: Report['status']) => {
@@ -81,7 +97,7 @@ const Reports: React.FC = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input 
+                <Input
                   label="Location"
                   placeholder="E.g., 123 Main St, Near Central Park"
                   value={location}
@@ -96,7 +112,7 @@ const Reports: React.FC = () => {
                   <label className="flex items-center justify-center w-full px-4 py-2 bg-white border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                     <Camera className="w-5 h-5 text-gray-400 mr-2" />
                     <span className="text-sm text-gray-600">Choose file or take photo</span>
-                    <input type="file" className="hidden" accept="image/*" />
+                    <input type="file" onChange={(e) => setImage(e.target.files?.[0] || null)} />
                   </label>
                 </div>
               </div>
@@ -127,9 +143,9 @@ const Reports: React.FC = () => {
           <div className="flex gap-2">
             <div className="w-full max-w-xs relative">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input 
-                type="text" 
-                placeholder="Search location..." 
+              <input
+                type="text"
+                placeholder="Search location..."
                 className="w-full pl-9 pr-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:bg-white text-sm outline-none"
               />
             </div>
@@ -139,12 +155,12 @@ const Reports: React.FC = () => {
           </div>
         </CardHeader>
         <div className="divide-y divide-gray-100">
-          {mockReports.map((report) => (
+          {reports.map((report) => (
             <div key={report.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row gap-4">
               {report.imageUrl ? (
-                <img 
-                  src={report.imageUrl} 
-                  alt="Waste location" 
+                <img
+                  src={report.imageUrl}
+                  alt="Waste location"
                   className="w-full sm:w-32 h-24 object-cover rounded-lg shrink-0"
                 />
               ) : (
@@ -152,7 +168,7 @@ const Reports: React.FC = () => {
                   <Camera className="w-6 h-6 opacity-30" />
                 </div>
               )}
-              
+
               <div className="flex-1 flex flex-col">
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="font-semibold text-gray-900 flex items-center gap-1.5">

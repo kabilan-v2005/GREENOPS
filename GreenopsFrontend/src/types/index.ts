@@ -27,12 +27,11 @@ export interface Item {
 }
 
 export interface Complaint {
-  id: string;
+  complaintId: string;
   userId: string;
-  title: string;
-  description: string;
+  complaintDescription: string;
   status: 'Pending' | 'Resolved';
-  createdAt: string;
+  complaintDate: string;
 }
 
 export interface Feedback {
