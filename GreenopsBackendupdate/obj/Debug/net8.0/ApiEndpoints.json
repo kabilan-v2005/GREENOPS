@@ -1,0 +1,154 @@
+[
+  {
+    "ContainingType": "Greenops.Controllers.ComplaintController",
+    "Method": "GetAllComplaints",
+    "RelativePath": "api/Complaint/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.ComplaintController",
+    "Method": "RegisterComplaint",
+    "RelativePath": "api/Complaint/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "complaint",
+        "Type": "Greenops.Models.Complaint",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.FeedbackController",
+    "Method": "GetAllFeedback",
+    "RelativePath": "api/Feedback/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.FeedbackController",
+    "Method": "SubmitFeedback",
+    "RelativePath": "api/Feedback/submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "feedback",
+        "Type": "Greenops.Models.Feedback",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.OrderController",
+    "Method": "BuyProduct",
+    "RelativePath": "api/Order/buy",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order",
+        "Type": "Greenops.Models.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.OrderController",
+    "Method": "GetUserOrders",
+    "RelativePath": "api/Order/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.ResaleController",
+    "Method": "AddItem",
+    "RelativePath": "api/Resale/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "Greenops.Models.ResaleItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.ResaleController",
+    "Method": "GetAllItems",
+    "RelativePath": "api/Resale/items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.ResaleController",
+    "Method": "GetUserProducts",
+    "RelativePath": "api/Resale/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.WasteReportController",
+    "Method": "GetAllReports",
+    "RelativePath": "api/WasteReport/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Greenops.Controllers.WasteReportController",
+    "Method": "AddReport",
+    "RelativePath": "api/WasteReport/report",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "report",
+        "Type": "Greenops.Models.WasteReport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

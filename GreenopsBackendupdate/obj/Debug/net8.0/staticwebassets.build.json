@@ -1,0 +1,331 @@
+{
+  "Version": 1,
+  "Hash": "XVl5k2H8od8cN3HvHZdNhP4WLM9URiNroA7vNoF9d1Q=",
+  "Source": "Greenops",
+  "BasePath": "_content/Greenops",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Greenops\\wwwroot",
+      "Source": "Greenops",
+      "ContentRoot": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\",
+      "BasePath": "_content/Greenops",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099295080022452.jpg",
+      "SourceId": "Greenops",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\",
+      "BasePath": "_content/Greenops",
+      "RelativePath": "uploads/nil_639099295080022452#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "axor1tmbpo",
+      "Integrity": "7gvT8Pf961cz90b32kCrh9XFfJkClm7QzaYzZSm6ZQY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\nil_639099295080022452.jpg"
+    },
+    {
+      "Identity": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296320374151.png",
+      "SourceId": "Greenops",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\",
+      "BasePath": "_content/Greenops",
+      "RelativePath": "uploads/nil_639099296320374151#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5vlps4q60u",
+      "Integrity": "8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\nil_639099296320374151.png"
+    },
+    {
+      "Identity": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296411828738.png",
+      "SourceId": "Greenops",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\",
+      "BasePath": "_content/Greenops",
+      "RelativePath": "uploads/nil_639099296411828738#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5vlps4q60u",
+      "Integrity": "8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\nil_639099296411828738.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/nil_639099295080022452.axor1tmbpo.jpg",
+      "AssetFile": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099295080022452.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9805740"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7gvT8Pf961cz90b32kCrh9XFfJkClm7QzaYzZSm6ZQY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Mar 2026 06:11:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "axor1tmbpo"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/nil_639099295080022452.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7gvT8Pf961cz90b32kCrh9XFfJkClm7QzaYzZSm6ZQY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/nil_639099295080022452.jpg",
+      "AssetFile": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099295080022452.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9805740"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7gvT8Pf961cz90b32kCrh9XFfJkClm7QzaYzZSm6ZQY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Mar 2026 06:11:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7gvT8Pf961cz90b32kCrh9XFfJkClm7QzaYzZSm6ZQY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/nil_639099296320374151.5vlps4q60u.png",
+      "AssetFile": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296320374151.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1563317"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Mar 2026 06:13:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5vlps4q60u"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/nil_639099296320374151.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/nil_639099296320374151.png",
+      "AssetFile": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296320374151.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1563317"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Mar 2026 06:13:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/nil_639099296411828738.5vlps4q60u.png",
+      "AssetFile": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296411828738.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1563317"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Mar 2026 06:14:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5vlps4q60u"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/nil_639099296411828738.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/nil_639099296411828738.png",
+      "AssetFile": "D:\\Greenops\\GreenopsBackendupdate\\wwwroot\\uploads\\nil_639099296411828738.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1563317"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 24 Mar 2026 06:14:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8YYvmf/BO3x3oSf1pphzZGy1Nw0EOrfFxAy3ZSsPBUo="
+        }
+      ]
+    }
+  ]
+}

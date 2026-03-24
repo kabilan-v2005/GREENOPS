@@ -9,3 +9,7 @@ export const addResaleItem = async (data: any) => {
   const response = await api.post('/resale/add', data); // ✅ JSON
   return response.data;
 };
+export const getUserProducts = async (userId: number) => {
+  const response = await api.get(`/resale/user/${userId}`);
+  return response.data;
+};

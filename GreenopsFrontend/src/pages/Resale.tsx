@@ -6,6 +6,7 @@ import Input from '../components/ui/Input';
 import type { Item } from '../types';
 import { getResaleItems, addResaleItem } from '../services/resaleService';
 import { buyProduct } from '../services/orderService';
+import { useNavigate } from "react-router-dom";
 
 const Resale: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,6 +17,7 @@ const Resale: React.FC = () => {
   const [productPrice, setProductPrice] = useState("");
   const [usageYears, setUsageYears] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   // 🔥 FETCH ITEMS
   useEffect(() => {
@@ -88,6 +90,12 @@ const Resale: React.FC = () => {
         <Button className="shrink-0" onClick={() => setShowForm(true)}>
           <Plus className="w-5 h-5 mr-2" />
           List an Item
+        </Button>
+        <Button onClick={() => navigate("/my-orders")}>
+          My Orders
+        </Button>
+        <Button onClick={() => navigate("/my-listings")}>
+          My Listings
         </Button>
       </div>
 
