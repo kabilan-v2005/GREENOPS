@@ -11,5 +11,9 @@
         public string PhoneNumber { get; set; }
 
         public string District { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public string Password { get; set; }
     }
 }

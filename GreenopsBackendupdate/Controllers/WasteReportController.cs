@@ -4,6 +4,7 @@ using Greenops.Models;
 using GreenopsAPI.Data;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Greenops.Controllers
 {
@@ -17,7 +18,7 @@ namespace Greenops.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpPost("report")]
         public IActionResult AddReport(WasteReport report)
         {
@@ -78,7 +79,7 @@ namespace Greenops.Controllers
         //            return StatusCode(500, ex.Message);
         //        }
         //    }
-
+        [Authorize]
         [HttpGet("all")]
         public IActionResult GetAllReports()
         {

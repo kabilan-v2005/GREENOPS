@@ -2,6 +2,7 @@
 //using Greenops.Data;
 using Greenops.Models;
 using GreenopsAPI.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Greenops.Controllers
 {
@@ -15,7 +16,7 @@ namespace Greenops.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpPost("register")]
         public IActionResult RegisterComplaint(Complaint complaint)
         {
@@ -27,7 +28,7 @@ namespace Greenops.Controllers
 
             return Ok(complaint);
         }
-
+        [Authorize]
         [HttpGet("all")]
         public IActionResult GetAllComplaints()
         {

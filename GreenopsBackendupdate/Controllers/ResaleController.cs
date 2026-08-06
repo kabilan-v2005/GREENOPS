@@ -3,6 +3,7 @@ using Greenops.Models;
 using GreenopsAPI.Data;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Greenops.Controllers
 {
@@ -16,7 +17,7 @@ namespace Greenops.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpPost("add")]
         public IActionResult AddItem([FromBody] ResaleItem item)
         {
@@ -34,12 +35,14 @@ namespace Greenops.Controllers
 
             return Ok(item);
         }
+        [Authorize]
         [HttpGet("items")]
         public IActionResult GetAllItems()
         {
             var items = _context.ResaleItems.ToList();
             return Ok(items);
         }
+        [Authorize]
         [HttpGet("user/{userId}")]
         public IActionResult GetUserProducts(int userId)
         {

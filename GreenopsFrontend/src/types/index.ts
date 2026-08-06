@@ -1,3 +1,32 @@
+// Auth Types
+export interface AuthUser {
+  userId: string;
+  userName: string;
+  email: string;
+  phoneNumber?: string;
+  district?: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterFormData {
+  userName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  district: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  user?: AuthUser;
+  message?: string;
+}
+
+// User Types
 export interface User {
   id: string;
   name: string;
@@ -5,6 +34,7 @@ export interface User {
   role?: string;
 }
 
+// Report Types
 export interface Report {
   id: string;
   userId: string;
@@ -15,6 +45,7 @@ export interface Report {
   createdAt: string;
 }
 
+// Item Types
 export interface Item {
   id: string;
   userId: string;
@@ -26,6 +57,7 @@ export interface Item {
   createdAt: string;
 }
 
+// Complaint Types
 export interface Complaint {
   complaintId: string;
   userId: string;
@@ -34,10 +66,18 @@ export interface Complaint {
   complaintDate: string;
 }
 
+// Feedback Types
 export interface Feedback {
   id: string;
   userId: string;
   message: string;
   rating: number;
   createdAt: string;
+}
+
+// API Error Type
+export interface ApiError {
+  message: string;
+  errors?: Record<string, string[]>;
+  statusCode?: number;
 }

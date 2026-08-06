@@ -2,6 +2,7 @@
 //using Greenops.Data;
 using Greenops.Models;
 using GreenopsAPI.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Greenops.Controllers
 {
@@ -15,7 +16,7 @@ namespace Greenops.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpPost("submit")]
         public IActionResult SubmitFeedback(Feedback feedback)
         {
@@ -26,7 +27,7 @@ namespace Greenops.Controllers
 
             return Ok(feedback);
         }
-
+        [Authorize]
         [HttpGet("all")]
         public IActionResult GetAllFeedback()
         {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Greenops")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2a05607ce814a906a70c30db6f15fbf8981b672")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc814ba0ed0766af6a67210ff44ef5a0b174e203")]
 [assembly: System.Reflection.AssemblyProductAttribute("Greenops")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Greenops")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
