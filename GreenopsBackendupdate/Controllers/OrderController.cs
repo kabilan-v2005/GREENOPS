@@ -2,6 +2,7 @@
 //using Greenops.Data;
 using Greenops.Models;
 using GreenopsAPI.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Greenops.Controllers
 {
@@ -15,7 +16,7 @@ namespace Greenops.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpPost("buy")]
         public IActionResult BuyProduct([FromBody] Order order)
         {
@@ -41,6 +42,7 @@ namespace Greenops.Controllers
 
             return Ok(order);
         }
+        [Authorize]
         [HttpGet("user/{userId}")]
         public IActionResult GetUserOrders(int userId)
         {

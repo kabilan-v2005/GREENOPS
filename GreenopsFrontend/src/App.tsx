@@ -16,6 +16,9 @@ import Resale from './pages/Resale';
 import MyOrders from './pages/MyOrders';
 import MyListings from "./pages/MyListings";
 
+// Components
+import ProtectedRoute from './components/ProtectedRoute';
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -24,8 +27,15 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Protected/Main Layout Routes (assuming / forwards to dashboard) */}
-        <Route path="/" element={<MainLayout />}>
+        {/* Protected Routes with MainLayout */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <MainLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="complaints" element={<Complaints />} />
@@ -36,7 +46,7 @@ const App: React.FC = () => {
           <Route path="my-listings" element={<MyListings />} />
         </Route>
 
-        {/* Fallback route */}
+        {/* Fallback route - redirect to login */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
