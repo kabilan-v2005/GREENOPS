@@ -31,9 +31,11 @@ namespace Greenops.Controllers
         [HttpGet("all")]
         public IActionResult GetAllFeedback()
         {
-            var feedbackList = _context.Feedback.ToList();
+           // var feedbackList = _context.Feedback.ToList();
 
-            return Ok(feedbackList);
+           // return Ok(feedbackList);
+              return Ok(new { message = "API working 🚀" });
+
         }
     }
 }
