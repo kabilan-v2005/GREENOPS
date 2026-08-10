@@ -1,9 +1,12 @@
 package com.greenops.service;
 
+import com.greenops.dto.LoginRequestDTO;
+import com.greenops.dto.LoginResponseDTO;
 import com.greenops.dto.RegisterRequestDTO;
 import com.greenops.dto.UserResponseDTO;
 import com.greenops.entity.User;
 import com.greenops.repository.UserRepository;
+import com.greenops.util.JwtService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +17,15 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public AuthServiceImpl(
             UserRepository userRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder, JwtService jwtService) {
 
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -59,5 +64,37 @@ public class AuthServiceImpl implements AuthService {
                 savedUser.getDistrict(),
                 savedUser.getCreatedAt()
         );
+    }
+
+    @Override
+    public LoginResponseDTO login(LoginRequestDTO request) {
+
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() ->
+                        new RuntimeException("Invalid email or password")
+                );
+
+        boolean passwordMatches =
+                passwordEncoder.matches(
+                        request.getPassword(),
+                        user.getPassword()
+                );
+
+        if (!passwordMatches) {
+            throw new RuntimeException("Invalid email or password");
+        }
+
+        String token = jwtService.generateToken(user.getEmail());
+
+        UserResponseDTO userResponse = new UserResponseDTO(
+                user.getUserId(),
+                user.getUserName(),
+                user.getEmail(),
+                user.getPhoneNumber(),
+                user.getDistrict(),
+                user.getCreatedAt()
+        );
+
+        return new LoginResponseDTO(token, userResponse);
     }
 }

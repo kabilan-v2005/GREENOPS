@@ -1,5 +1,7 @@
 package com.greenops.controller;
 
+import com.greenops.dto.LoginRequestDTO;
+import com.greenops.dto.LoginResponseDTO;
 import com.greenops.dto.RegisterRequestDTO;
 import com.greenops.dto.UserResponseDTO;
 import com.greenops.service.AuthService;
@@ -27,5 +29,14 @@ public class AuthController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login(
+            @Valid @RequestBody LoginRequestDTO request) {
+
+        LoginResponseDTO response = authService.login(request);
+
+        return ResponseEntity.ok(response);
     }
 }

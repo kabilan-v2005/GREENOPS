@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GreenopsBackendJavaSpringApplication {
 
     public static void main(String[] args) {
-//       ApplicationContext context = 
+//       ApplicationContext context =
                SpringApplication.run(GreenopsBackendJavaSpringApplication.class, args);
-
     }
 }
